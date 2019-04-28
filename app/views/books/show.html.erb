@@ -1,0 +1,70 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<h2>User info</h2>
+				 <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+				 <table class="table">
+				 	<tbody>
+				 		<tr>
+				 			<td>
+				 				<strong>name</strong>
+				 			</td>
+				 			<td><%= @user.name %></td>
+				 		</tr>
+				 		<tr>
+				 			<td><strong>introduction</strong></td>
+				 			<td><%= @user.introduction %></td>
+				 		</tr>
+				 	</tbody>
+				 </table>
+				 <div class="row">
+					 	<% if @user.id == current_user.id %>
+					        <%= link_to edit_user_path(@user), class: 'col-xs-12 btn btn-default btn-lg' do  %><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+					        <% end %>
+					     <% end %>
+				 </div>
+			<h2>New Book</h2>
+				<div class="row">
+					<%= form_for(@book) do |f| %>
+
+						<label>Title</label>
+							<%= f.text_field :title, :class => "form-control" %>
+
+						<label>Option</label>
+							<%= f.text_area :option, :class => "form-control" %>
+
+						<div class="actions">
+		            		<%= f.submit "create book", :class => "btn btn-primary btn-sm btn-block" %>
+        				</div>
+
+					<% end %>
+				</div>
+		</div>
+		<div class="col-xs-9">
+			<h2>Book detail</h2>
+			<table class="table table-hover table-inverse">
+				<tbody>
+					<tr>
+						<td>
+							<%= link_to user_path(@user) do %>
+								<%= attachment_image_tag @user, :image, :fill, 40, 40, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+								<%= @user.name %>
+							<% end %>
+						</td>
+						<td> <%= @book.title %></td>
+						<td> <%= @book.option %></td>
+						<td> <% if @book.user == current_user %>
+	 							 <%= link_to "edit", edit_book_path(@book), :class => "btn btn-success" %>
+							<% end %>
+	 					</td>
+						<td>
+							<% if @book.user == current_user %>
+	 							 <%= link_to "destroy", book_path(@book), method: :delete, :class => "btn btn-danger" %>
+							<% end %>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

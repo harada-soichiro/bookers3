@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>User info</h2>
+                <%= form_for(@user) do |f| %>
+                <% if @user.errors.any? %>
+                    <h3><%= @user.errors.count %>error occurrence</h3><!--エラーメッセ-->
+                    <ul>
+                        <% @user.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                <% end %>
+                <div class="form-group">
+                    <label>Name</label>
+                    <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+                    <div class="form-group">
+                <label>ProfileImage</label>
+                <%= f.attachment_field :image %>
+                </div>
+                    <label>Introduction</label>
+                    <%= f.text_field :introduction, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"自己紹介"%>
+                </div>
+                <%= f.submit '投稿' %>
+            <% end %>
+        </div>
+    </div>
+</div>
