@@ -21,14 +21,13 @@ before_action :baria_user, only: [:edit, :update]
        flash[:notice] = "successfully saved"
        redirect_to user_path(@user.id)
     else
-      @user = User.find(params[:id])
      render "edit"
     end
   end
 
   private
   	def user_params
-   	 params.require(:user).permit(:name, :introduction, :profile_image)
+   	 params.require(:user).permit(:name, :introduction, :image)
    end
    def baria_user
     unless params[:id].to_i == current_user.id
