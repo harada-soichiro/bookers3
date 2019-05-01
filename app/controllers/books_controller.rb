@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
 
-before_action :baria_user, only: [:edit, :update, :create, :new]
+before_action :baria_user, only: [:edit, :update]
 
   def show
     @book = Book.find(params[:id])
