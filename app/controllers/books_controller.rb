@@ -33,7 +33,10 @@ before_action :baria_user, only: [:edit, :update]
 
   def edit
      @book = Book.find(params[:id])
-  end
+     if @book.user.id != current_user.id
+        redirect_to books_path
+      end
+ end
 
   def update
     @book = Book.find(params[:id])
