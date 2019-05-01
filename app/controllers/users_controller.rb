@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-before_action :baria_user, only: [:edit, :update]
+before_action :baria_user, only: [:edit, :update, :crate, :new]
 
   def show
   	@user = User.find(params[:id])
